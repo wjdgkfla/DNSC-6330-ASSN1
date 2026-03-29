@@ -4,7 +4,7 @@
 This repository reproduces the Lecture 01 COMPAS analysis by translating the original R notebook workflow into Python. The goal is to preserve all substantive analytical steps: EDA, preprocessing, model development, diagnostics, and interpretation.
 
 Notebook included:
-- `Lecture-01-alignment-python.ipynb`
+- `Assignment 1.ipynb`
 
 Reference notebook translated:
 - `Lecture-01-alignment.ipynb` (R)
@@ -45,7 +45,7 @@ Reference notebook translated:
    pip install pandas numpy matplotlib statsmodels scikit-learn
    ```
 3. Open Jupyter and run all cells in:
-   - `Lecture-01-alignment-python.ipynb`
+   - `Assignment 1.ipynb`
 
 ## Expected Outputs
 - EDA summaries for age, race, sex, and score distributions.
