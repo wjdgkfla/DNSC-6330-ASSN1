@@ -1,81 +1,105 @@
-# Hi, I'm Ha Lim Chung — but you can call me Jack 👋
+﻿# Assignment 1 - Translating an R Machine Learning Workflow into Python (COMPAS)
 
-**Business Analytics grad student @ GWU · Data & ML · Python · SQL**
+## Purpose of the Analysis
+This notebook reproduces the Lecture 01 COMPAS analysis by translating the original R workflow into Python. The goal is to preserve all substantive analytical steps: EDA, preprocessing, model development, diagnostics, and interpretation.
 
-I'm a bilingual (English/Korean) data analyst and aspiring ML practitioner based in the DMV area. I build things that turn messy data into clear decisions — from enrollment forecasting pipelines to full-stack marketplaces to responsible AI models.
+## Notebook Included
+- `Assignment 1.ipynb` - Complete Python translation of the Lecture 01 COMPAS workflow
 
----
+## Reference Material
+This notebook replicates the R-based lecture notebook (`Lecture-01-alignment.ipynb`) covered during Lecture 01: Foundations of the Alignment Problem (DNSC 6330). The R reference notebook is provided by the instructor in course materials; this submission contains the Python equivalent.
 
-## About Me
+## Libraries Used
+- `pandas`
+- `numpy`
+- `matplotlib`
+- `statsmodels`
+- `scikit-learn`
 
-- 🎓 **M.S. Business Analytics** — George Washington University *(exp. June 2027)*
-- 🎓 **B.S. Management Information Systems** — George Mason University *(2024)*
-- 💼 Previously: Content Analyst @ VACO · Enrollment Data Intern @ INTO Mason · Credit Bureau Intern @ Sallie Mae
-- 🌏 Languages: English (Native) · Korean (Native) · Chinese (Conversational)
-- 📬 [jack.chung@gwu.edu](mailto:jack.chung@gwu.edu)
+## How This Notebook Meets the Assignment Requirements
 
----
+### 1) Replicate Exploratory Data Analysis (EDA)
+Assignment requirement: Load dataset, perform preprocessing, and reproduce descriptive statistics and visualizations.
 
-## Tech Stack
+This notebook includes:
+- SECTION 2: Load COMPAS dataset from ProPublica URL (equivalent to R `read.csv()`)
+- SECTION 3: Data cleaning/filtering (equivalent to `dplyr::filter()` logic)
+- SECTION 4: Feature engineering and categorical variable creation (equivalent to `factor()` and `relevel()`)
+- SECTION 5: EDA summaries by age, race, sex, and decile scores
+- Visualizations: Histograms of decile scores by race and crosstabs of demographic variables
 
-**Languages & Data**
+### 2) Reproduce Model Development Pipeline
+Assignment requirement: Implement the same modeling approach with clear documentation of feature selection and parameter choices.
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![R](https://img.shields.io/badge/R-276DC3?style=flat&logo=r&logoColor=white)
-![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat&logo=postgresql&logoColor=white)
-![Snowflake](https://img.shields.io/badge/Snowflake-29B5E8?style=flat&logo=snowflake&logoColor=white)
-![Excel](https://img.shields.io/badge/Excel-217346?style=flat&logo=microsoft-excel&logoColor=white)
+This notebook includes:
+- SECTION 6: Modeling dataset preparation
+- SECTION 7: Logistic regression using `statsmodels.formula.api.glm()` (R equivalent: `glm(..., family=binomial(link="logit"))`)
+- Explicit feature formula and explicit reference categories using `Treatment(reference=...)`
 
-**ML / Analytics Libraries**
+### 3) Replicate Model Evaluation and Diagnostics
+Assignment requirement: Implement diagnostic procedures and ensure conceptual correspondence to the R workflow.
 
-![pandas](https://img.shields.io/badge/pandas-150458?style=flat&logo=pandas&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikit-learn&logoColor=white)
-![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c?style=flat)
+This notebook includes:
+- SECTION 8-10: Predicted probabilities, binary classification, and overall confusion matrix metrics (accuracy, precision, recall, FPR, FNR)
+- SECTION 11: Race-level confusion matrices and group-conditional error rates
+- SECTION 12: Disparity table (`delta_FPR`, `delta_FNR`) relative to Caucasian baseline
+- SECTION 12A: Companion lecture-rule check using `decile_score >= 7`
+- SECTION 13: Comprehensive interpretation and Responsible ML implications
 
-**Web / Full-Stack**
+### 4) Documentation and Reproducibility
+Assignment requirement: Fully reproducible and clearly organized.
 
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
+This notebook includes:
+- Clear markdown headers and section structure
+- Inline explanations for data-quality filtering and variable transformations
+- Organized pipeline: data loading -> preprocessing -> EDA -> modeling -> evaluation -> interpretation
+- Executable cells with saved outputs for grading and verification
 
----
+## Thresholding Clarification (Lecture 01 Consistency)
+Lecture 01 presents two related binary-decision framings:
+- Explicit COMPAS rule framing: classify high risk via `decile_score >= 7`
+- Live-coding model-diagnostics framing: classify via `pred_prob >= 0.5`
 
-## Featured Projects
+This notebook follows the live-coding model-diagnostics pathway for the main confusion-matrix analysis and includes a companion Section 12A with the explicit `decile_score >= 7` check.
 
-### Enrollment Projection Tool
-> Python · pandas · Matplotlib · Forecasting
+## Reproducibility Instructions
 
-Built for INTO Mason's enrollment planning team. Automated data collection, cleaning, and validation pipelines — cutting manual reporting workload by **50%** and improving forecast accuracy by **15%** against actual enrollment figures. Delivered trend reports and visualizations that directly informed marketing and cross-functional decisions.
+### Environment Setup
+1. Create and activate a Python 3.11+ environment:
+```bash
+python3 -m venv compas_env
+source compas_env/bin/activate  # Windows: compas_env\Scripts\activate
+```
 
----
+2. Install dependencies:
+```bash
+pip install pandas numpy matplotlib statsmodels scikit-learn
+```
 
-### Mason Market
-> Next.js · Firebase · Tailwind CSS · Full-Stack
+### Running the Notebook
+1. Launch Jupyter:
+```bash
+jupyter notebook
+```
 
-A campus marketplace for George Mason students to post and browse real-time listings for student-to-student transactions. Designed and built end-to-end, from database structure to UI — focused on simplicity and speed for everyday campus use.
+2. Open `Assignment 1.ipynb` and run all cells in order.
 
----
+3. Verify outputs include:
+- EDA summaries and visualizations
+- Logistic regression summary table
+- Overall confusion matrix metrics
+- Race-level fairness metrics and disparity table
+- Companion `decile_score >= 7` diagnostic metrics
+- Final interpretation section
 
-### Responsible Machine Learning Capstone
-> Python · scikit-learn · Fairness Analysis
+## Verification Checklist
+- All notebook sections execute without errors.
+- Data loads from ProPublica COMPAS source.
+- Filtered sample size matches lecture expectations (~6,170 records).
+- Histograms show decile-score distributions by race.
+- Logistic model produces expected directionality for key coefficients.
+- Fairness disparity results are present and interpretable.
+- Outputs are embedded in the notebook.
 
-Tackled model deployment risk head-on by quantifying fairness gaps across demographic subgroups using adverse impact ratio and false positive/negative rate analysis. The goal: make ML outcomes defensible and auditable, not just accurate.
-
----
-
-## GitHub Stats
-
-![Ha Lim's GitHub Stats](https://github-readme-stats.vercel.app/api?username=wjdgkfla&show_icons=true&theme=default&hide_border=true&count_private=true)
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=wjdgkfla&layout=compact&hide_border=true&theme=default)
-
----
-
-## Let's Connect
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ha-lim-chung/)
-[![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=flat&logo=vercel&logoColor=white)](https://halimchung.vercel.app/)
-[![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:jack.chung@gwu.edu)
-
----
-
-*"Data without context is noise. I build the context."*
+## Note on Minor Numeric Differences
+Small differences versus R can appear due to implementation details (optimization tolerances and floating-point behavior). Substantive conclusions remain the same.
